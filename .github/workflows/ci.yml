@@ -39,15 +39,4 @@ jobs:
   
     - name: Ejecutar pruebas
       run: |
-        coverage run manage.py test
-
-    - name: Generar informe de cobertura xml 
-      run: |
-        coverage xml 
-
-    - name: Enviar reporte
-      uses: codacy/codacy-coverage-reporter-action@v1
-      with:
-        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-        coverage-reports: coverage.xml
-
+        py manage.py test
