@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'myFirstApiRest.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-            default='postgres://postgres_user:postgres_password@localhost/myFirstApiRestDb',
+            default='postgres://postgres_user:postgres_password@localhost:5432/myFirstApiRestDb',
             conn_max_age=600,
     )
 }
