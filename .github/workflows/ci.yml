@@ -39,4 +39,4 @@ jobs:
   
     - name: Ejecutar pruebas
       run: |
-        py manage.py test
+        python manage.py test
