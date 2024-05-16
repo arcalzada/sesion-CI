@@ -1,20 +1,20 @@
 from rest_framework import generics, status
 from .models import Category, Product
-from .serializers import CategoryListCreateSerializer, CategoryDetailSerializer, ProductListCreateSerializer, ProductDetailSerializer
+from .serializers import CategoryListSerializer, CategoryDetailSerializer, ProductListSerializer, ProductDetailSerializer
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
-class CategoryListCreate(generics.ListCreateAPIView):
+class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategoryListCreateSerializer
+    serializer_class = CategoryListSerializer
 
-class CategoryRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class CategoryRetrieve(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
 
-class ProductListCreate(generics.ListCreateAPIView):
+class ProductList(generics.ListAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductListCreateSerializer
+    serializer_class = ProductListSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -62,6 +62,6 @@ class ProductListCreate(generics.ListCreateAPIView):
             return Response({'error': f'Parámetros no válidos: {invalid_params}'}, status=status.HTTP_400_BAD_REQUEST)
         return super().handle_exception(exc)
     
-class ProductRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class ProductRetrieve(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductDetailSerializer

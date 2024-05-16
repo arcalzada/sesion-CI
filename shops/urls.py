@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import CategoryListCreate, CategoryRetrieveUpdateDestroy, ProductListCreate, ProductRetrieveUpdateDestroy
+from .views import CategoryList, CategoryRetrieve, ProductList, ProductRetrieve
 
 app_name="shops"
 urlpatterns = [
-    path('categories/', CategoryListCreate.as_view(), name='category-list-create'),
-    path('categories/<int:pk>/', CategoryRetrieveUpdateDestroy.as_view(), name='category-detail'),
-    path('products/', ProductListCreate.as_view(), name='product-list-create'),
-    path('products/<int:pk>/', ProductRetrieveUpdateDestroy.as_view(), name='product-detail'),
+    path('categories/', CategoryList.as_view(), name='category-list'),
+    path('categories/<int:pk>/', CategoryRetrieve.as_view(), name='category-detail'),
+    path('products/', ProductList.as_view(), name='product-list'),
+    path('products/<int:pk>/', ProductRetrieve.as_view(), name='product-detail'),
 ]

@@ -1,5 +1,10 @@
 from django.test import SimpleTestCase, TestCase
-from ..models import Product, Category
+from .models import Product, Category
+from .serializers import (
+    CategoryListSerializer,
+    CategoryDetailSerializer,
+    ProductListSerializer,
+)
 
 #Test unitarios (SimpleTestCase)
 class CategoryModelSimpleTestCase(SimpleTestCase):
@@ -47,3 +52,13 @@ class ProductModelTestCase(TestCase):
                 thumbnail="https://example.com/another-thumbnail.jpg",
                 images=["https://example.com/image3.jpg"]
             )
+
+class CategorySerializerTests(TestCase):
+    def test_category_list_serializer_valid(self):
+        serializer = CategoryListSerializer(data={'name': 'Electronics'})
+        self.assertTrue(serializer.is_valid())
+    
+    def test_category_detail_serializer_valid(self):
+        category = Category.objects.create(name='Electronics')
+        serializer = CategoryDetailSerializer(category)
+        self.assertTrue(serializer.data['id'] == category.id)
